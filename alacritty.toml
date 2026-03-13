@@ -1,0 +1,18 @@
+[window]
+decorations = "buttonless"
+blur = true
+opacity = 0.9
+
+[window.padding]
+x = 15
+y = 15
+
+[font]
+size = 15
+
+[font.normal]
+family = "MesloLGS NF"
+
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "tmux attach || tmux"]
