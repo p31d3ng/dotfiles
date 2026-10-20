@@ -1,6 +1,6 @@
-.PHONY: install install-tmux install-alacritty install-fonts
+.PHONY: install install-tmux install-alacritty install-ghostty install-fonts
 
-install: install-tmux install-alacritty
+install: install-tmux install-alacritty install-ghostty
 
 install-fonts:
 	@echo "Install MesloLGS NF fonts to ~/Library/Fonts? [y/N]"; \
@@ -36,3 +36,16 @@ install-alacritty: install-fonts
 	fi
 	cp alacritty.toml ~/.config/alacritty/alacritty.toml
 	@echo "Installed alacritty.toml -> ~/.config/alacritty/alacritty.toml"
+
+install-ghostty: install-fonts
+	@mkdir -p ~/.config/ghostty
+	@if [ -f ~/.config/ghostty/config ]; then \
+		echo "~/.config/ghostty/config already exists. Overwrite? [y/N]"; \
+		read ans; \
+		if [ "$$ans" != "y" ] && [ "$$ans" != "Y" ]; then \
+			echo "Skipping ghostty config"; \
+			exit 0; \
+		fi; \
+	fi
+	cp ghostty.config ~/.config/ghostty/config
+	@echo "Installed ghostty.config -> ~/.config/ghostty/config"
